@@ -11,6 +11,6 @@ import scala.concurrent.duration.Duration
 class HomeController @Inject()() extends Controller {
 
   def index: Action[AnyContent] = Action.async {
-    Future(Ok("channel-partners-api"))
+    Future(Ok("Hello world!"))
   }
 }
