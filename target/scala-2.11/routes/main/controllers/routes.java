@@ -1,7 +1,7 @@
 
 // @GENERATOR:play-routes-compiler
 // @SOURCE:/home/dabbu/IdeaProjects/scala-project/conf/routes
-// @DATE:Fri Mar 16 14:13:31 IST 2018
+// @DATE:Mon Mar 19 13:35:45 IST 2018
 
 package controllers;
 

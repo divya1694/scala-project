@@ -1,7 +1,7 @@
 
 // @GENERATOR:play-routes-compiler
 // @SOURCE:/home/dabbu/IdeaProjects/scala-project/conf/routes
-// @DATE:Fri Mar 16 14:13:31 IST 2018
+// @DATE:Mon Mar 19 13:35:45 IST 2018
 
 import play.api.routing.JavaScriptReverseRoute
 import play.api.mvc.{ QueryStringBindable, PathBindable, Call, JavascriptLiteral }
@@ -28,6 +28,16 @@ package controllers.javascript {
       """
         function() {
           return _wA({method:"GET", url:"""" + _prefix + """"})
+        }
+      """
+    )
+  
+    // @LINE:7
+    def getCityReportDownload: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.HomeController.getCityReportDownload",
+      """
+        function(city0,state1,fromDate2,toDate3) {
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "leads/HomeController/getCityReportDownload" + _qS([(city0 == null ? null : (""" + implicitly[QueryStringBindable[String]].javascriptUnbind + """)("city", city0)), (state1 == null ? null : (""" + implicitly[QueryStringBindable[String]].javascriptUnbind + """)("state", state1)), (fromDate2 == null ? null : (""" + implicitly[QueryStringBindable[String]].javascriptUnbind + """)("fromDate", fromDate2)), (toDate3 == null ? null : (""" + implicitly[QueryStringBindable[String]].javascriptUnbind + """)("toDate", toDate3))])})
         }
       """
     )

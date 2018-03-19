@@ -1,7 +1,7 @@
 
 // @GENERATOR:play-routes-compiler
 // @SOURCE:/home/dabbu/IdeaProjects/scala-project/conf/routes
-// @DATE:Fri Mar 16 14:13:31 IST 2018
+// @DATE:Mon Mar 19 13:35:45 IST 2018
 
 import play.api.mvc.{ QueryStringBindable, PathBindable, Call, JavascriptLiteral }
 import play.core.routing.{ HandlerDef, ReverseRouteContext, queryString, dynamicString }
@@ -23,6 +23,12 @@ package controllers {
     def index(): Call = {
       import ReverseRouteContext.empty
       Call("GET", _prefix)
+    }
+  
+    // @LINE:7
+    def getCityReportDownload(city:String = "", state:String = "", fromDate:String = "", toDate:String = ""): Call = {
+      import ReverseRouteContext.empty
+      Call("GET", _prefix + { _defaultPrefix } + "leads/HomeController/getCityReportDownload" + queryString(List(if(city == "") None else Some(implicitly[QueryStringBindable[String]].unbind("city", city)), if(state == "") None else Some(implicitly[QueryStringBindable[String]].unbind("state", state)), if(fromDate == "") None else Some(implicitly[QueryStringBindable[String]].unbind("fromDate", fromDate)), if(toDate == "") None else Some(implicitly[QueryStringBindable[String]].unbind("toDate", toDate)))))
     }
   
   }
