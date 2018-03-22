@@ -88,8 +88,8 @@ class HomeController @Inject()(implicit val postGreDao: PostgresDAO) extends Con
         cell03.setCellValue("AMOUNT")
         val cell04 = row0.createCell(4)
         cell04.setCellValue("REGISTRATION_NUM")
-        val cell06= row0.createCell(6)
-        cell06.setCellValue("EVENT_OCCURRED_ON")
+        val cell05= row0.createCell(5)
+        cell05.setCellValue("EVENT_OCCURRED_ON")
         val s: Seq[CityLevelModel] = Await.result(postGreDao.LeadsDB.getLeadLevelSalesDetails(dto), Duration.Inf)
         val size = Json.toJson(s).as[JsArray].value.size
         var i = 1
