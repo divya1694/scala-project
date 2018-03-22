@@ -17,14 +17,8 @@ case class CityLevelModel(
                            mobile:String,
                            name:String,
                            city:String,
-                           partnerID:String,
                            amount:String,
                            registrationNum:String,
-                           paymentStatus:String,
-                           makerStatus:String,
-                           checkerStatus:String,
-                           confirmStatus:String,
-                           channel:String,
                            eventOccurredOn:LocalDateTime
                          )
 
@@ -37,9 +31,17 @@ case class LeadsReportByPage(city:String,
                             )
 
 
+case class PayloadVO(
+                      name : String,
+                      address : String ,
+                      year:Double,
+                      amount:Double
+                    )
+
 object Formats {
   implicit val ReportAtCityLevelTOFmt: OFormat[ReportAtCityLevel] = Json.format[ReportAtCityLevel]
   implicit val CityLevelModelTOFmt: OFormat[CityLevelModel] = Json.format[CityLevelModel]
   implicit val LeadsReportByPageTOFmt: OFormat[LeadsReportByPage] = Json.format[LeadsReportByPage]
+  implicit val PayloadVOFmt: OFormat[PayloadVO] = Json.format[PayloadVO]
 
 }

@@ -1,7 +1,7 @@
 
 // @GENERATOR:play-routes-compiler
 // @SOURCE:/home/dabbu/IdeaProjects/scala-project/conf/routes
-// @DATE:Mon Mar 19 13:35:45 IST 2018
+// @DATE:Thu Mar 22 18:16:49 IST 2018
 
 package router
 
@@ -43,7 +43,8 @@ class Routes(
 
   def documentation = List(
     ("""GET""", this.prefix, """controllers.HomeController.index"""),
-    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """leads/HomeController/getCityReportDownload""", """@controllers.HomeController@.getCityReportDownload(city:String ?= "", state:String ?= "", fromDate:String ?= "", toDate:String ?= "")"""),
+    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """v1/HomeController/getCityReportDownload""", """@controllers.HomeController@.getCityReportDownload(city:String ?= "", state:String ?= "", fromDate:String ?= "", toDate:String ?= "")"""),
+    ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """v1/getJsonFromExcel""", """@controllers.HomeController@.getJsonFromExcel()"""),
     Nil
   ).foldLeft(List.empty[(String,String,String)]) { (s,e) => e.asInstanceOf[Any] match {
     case r @ (_,_,_) => s :+ r.asInstanceOf[(String,String,String)]
@@ -70,7 +71,7 @@ class Routes(
 
   // @LINE:7
   private[this] lazy val controllers_HomeController_getCityReportDownload1_route = Route("GET",
-    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("leads/HomeController/getCityReportDownload")))
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("v1/HomeController/getCityReportDownload")))
   )
   private[this] lazy val controllers_HomeController_getCityReportDownload1_invoker = createInvoker(
     HomeController_0.get.getCityReportDownload(fakeValue[String], fakeValue[String], fakeValue[String], fakeValue[String]),
@@ -81,7 +82,24 @@ class Routes(
       Seq(classOf[String], classOf[String], classOf[String], classOf[String]),
       "GET",
       """""",
-      this.prefix + """leads/HomeController/getCityReportDownload"""
+      this.prefix + """v1/HomeController/getCityReportDownload"""
+    )
+  )
+
+  // @LINE:9
+  private[this] lazy val controllers_HomeController_getJsonFromExcel2_route = Route("POST",
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("v1/getJsonFromExcel")))
+  )
+  private[this] lazy val controllers_HomeController_getJsonFromExcel2_invoker = createInvoker(
+    HomeController_0.get.getJsonFromExcel(),
+    HandlerDef(this.getClass.getClassLoader,
+      "router",
+      "controllers.HomeController",
+      "getJsonFromExcel",
+      Nil,
+      "POST",
+      """""",
+      this.prefix + """v1/getJsonFromExcel"""
     )
   )
 
@@ -98,6 +116,12 @@ class Routes(
     case controllers_HomeController_getCityReportDownload1_route(params) =>
       call(params.fromQuery[String]("city", Some("")), params.fromQuery[String]("state", Some("")), params.fromQuery[String]("fromDate", Some("")), params.fromQuery[String]("toDate", Some(""))) { (city, state, fromDate, toDate) =>
         controllers_HomeController_getCityReportDownload1_invoker.call(HomeController_0.get.getCityReportDownload(city, state, fromDate, toDate))
+      }
+  
+    // @LINE:9
+    case controllers_HomeController_getJsonFromExcel2_route(params) =>
+      call { 
+        controllers_HomeController_getJsonFromExcel2_invoker.call(HomeController_0.get.getJsonFromExcel())
       }
   }
 }

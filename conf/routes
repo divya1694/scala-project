@@ -4,5 +4,6 @@
 
 # An example controller showing a sample home page
 GET     /                                                                    controllers.HomeController.index
-GET            /leads/HomeController/getCityReportDownload                   @controllers.HomeController.getCityReportDownload(city:String?="",state:String?="",fromDate:String?="",toDate:String?="")
+GET            /v1/HomeController/getCityReportDownload                   @controllers.HomeController.getCityReportDownload(city:String?="",state:String?="",fromDate:String?="",toDate:String?="")
 
+POST        /v1/getJsonFromExcel                                          @controllers.HomeController.getJsonFromExcel()
