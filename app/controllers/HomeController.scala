@@ -32,10 +32,6 @@ class HomeController @Inject()(implicit val postGreDao: PostgresDAO) extends Con
     //request=GET /v1/echo
   }
 
-  def pecho = Action { request =>
-    Ok("Got request [" + request + "]")
-    //request=GET /v1/echo
-  }
 
   def getJsonFromExcel() = Action.async(parse.multipartFormData) {
     request => {
