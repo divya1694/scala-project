@@ -3,7 +3,10 @@
 # ~~~~
 
 # An example controller showing a sample home page
-GET     /                                                                    controllers.HomeController.index
+GET        /                                                                 controllers.HomeController.index
+GET       /v1/echo                                                          controllers.HomeController.echo
+POST       /v1/getName                                                   @controllers.HomeController.getName
+
 GET            /v1/HomeController/getCityReportDownload                   @controllers.HomeController.getCityReportDownload(city:String?="",state:String?="",fromDate:String?="",toDate:String?="")
 
 POST        /v1/getJsonFromExcel                                          @controllers.HomeController.getJsonFromExcel()

@@ -1,7 +1,7 @@
 
 // @GENERATOR:play-routes-compiler
 // @SOURCE:/home/dabbu/IdeaProjects/scala-project/conf/routes
-// @DATE:Thu Mar 22 18:16:49 IST 2018
+// @DATE:Thu Mar 22 19:52:15 IST 2018
 
 
 package router {

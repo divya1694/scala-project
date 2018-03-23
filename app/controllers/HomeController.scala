@@ -4,13 +4,14 @@ import java.io.{File, FileInputStream, FileOutputStream}
 import java.text.SimpleDateFormat
 import java.util.Date
 import javax.inject.Inject
+
 import scala.collection.JavaConverters._
 import Util.Helpers
 import dao.PostgresDAO
 import models.{CityLevelModel, PayloadVO, ReportAtCityLevel}
 import models.Formats._
 import org.apache.poi.xssf.usermodel.{XSSFCell, XSSFWorkbook}
-import play.api.libs.json.{JsArray, Json}
+import play.api.libs.json.{JsArray, JsError, JsValue, Json}
 import play.api.mvc.{Action, AnyContent, Controller}
 
 import scala.concurrent.Future
@@ -24,6 +25,13 @@ class HomeController @Inject()(implicit val postGreDao: PostgresDAO) extends Con
   def index: Action[AnyContent] = Action.async {
     Future(Ok("Hello world!"))
   }
+
+
+  def echo = Action { request =>
+    Ok("Got request [" + request + "]")
+    //request=GET /v1/echo
+  }
+
 
 
   def getJsonFromExcel() = Action.async(parse.multipartFormData) {
@@ -56,8 +64,18 @@ class HomeController @Inject()(implicit val postGreDao: PostgresDAO) extends Con
     }
   }
 
-
-
+  def getName()= Action.async(parse.json) {request =>
+    request.body.validate[JsValue].fold(
+      errors => Future.successful(Ok(Json.obj("code" -> 1, "message" -> "unable to get name", "errors" -> JsError.toJson(errors)))),
+      data=> {
+        val studentname = (data \ "studentName").as[String] match {
+          case name: String if name != "" => if (name.length > 10) "Student" else name
+          case "" => "Student"
+          case _ => "Student"
+        }
+        Future(Ok(studentname))
+      })
+  }
 
 
 
