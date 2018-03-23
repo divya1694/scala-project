@@ -2,4 +2,3 @@
 project/project/
 *.log
 target/
-conf/sentry.properties
